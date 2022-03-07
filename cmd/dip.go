@@ -26,14 +26,16 @@ func init() {
 			Required: false,
 		},
 	}
+	dip.Action = baseAction
 
-	// functions
-	dip.Action = func(c *cli.Context) error {
-		if c.Bool("version") {
-			fmt.Println(app.Version())
-		}
-		return nil
+	dip.Commands = []*cli.Command{calculateCmd}
+}
+
+func baseAction(c *cli.Context) error {
+	if c.Bool("version") {
+		fmt.Println(app.Version())
 	}
+	return nil
 }
 
 func Run() error {
