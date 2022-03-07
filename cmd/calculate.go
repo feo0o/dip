@@ -72,7 +72,6 @@ func calculateCIDR(c *cli.Context) error {
 	if ^ipMask[2] != 0 {
 		count += int(^ipMask[2]) << 8
 	}
-	fmt.Println(count)
 	if ^ipMask[3] != 0 {
 		count += int(^ipMask[3])
 	}

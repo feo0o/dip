@@ -1,7 +1,7 @@
 APP_NAME		=	Dip
 MAJOR_VERSION	=	0
-MINOR_VERSION	=	0
-BUILD_VERSION	=	1
+MINOR_VERSION	=	1
+BUILD_VERSION	=	0
 GIT_COMMIT		=	$(shell git rev-parse --short HEAD)
 
 RELEASE_DIR		=	release
