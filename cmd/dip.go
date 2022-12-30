@@ -11,33 +11,18 @@ import (
 
 var dip *cli.App
 
-func init() {
+func Run() error {
+	cli.VersionPrinter = func(c *cli.Context) {
+		fmt.Println(c.App.Version)
+	}
+
 	dip = cli.NewApp()
 	dip.Name = strings.ToLower(app.Name)
 	dip.HelpName = app.Name
-	dip.Usage = "A network tool for CIDR."
+	dip.Usage = "A network toolkit"
 	dip.UsageText = fmt.Sprintf("%s [--version] [--help] <command> [<args>]", dip.Name)
-	dip.Flags = []cli.Flag{
-		&cli.BoolFlag{
-			Name:     "version",
-			Aliases:  []string{"v"},
-			Value:    false,
-			Usage:    "show version",
-			Required: false,
-		},
-	}
-	dip.Action = baseAction
+	dip.Version = app.Version()
 
-	dip.Commands = []*cli.Command{calculateCmd}
-}
-
-func baseAction(c *cli.Context) error {
-	if c.Bool("version") {
-		fmt.Println(app.Version())
-	}
-	return nil
-}
-
-func Run() error {
+	dip.Commands = []*cli.Command{calcCmd}
 	return dip.Run(os.Args)
 }

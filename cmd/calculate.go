@@ -11,34 +11,27 @@ import (
 	"github.com/urfave/cli/v2"
 )
 
-var calculateCmd *cli.Command
+var calcCmd *cli.Command
 
 func init() {
-	calculateCmd = &cli.Command{
+	calcCmd = &cli.Command{
 		Name:    "calculate",
 		Aliases: []string{"calc"},
-		// Usage:   "calculate CIDR detail",
-		Action: calculate,
+		Usage:   "network calculator",
 		Subcommands: []*cli.Command{
-			&cli.Command{
+			{
 				Name:   "cidr",
 				Usage:  "calculate CIDR detail",
-				Action: calculateCIDR,
+				Action: calcCIDR,
 			},
 		},
 	}
 }
 
-func calculate(c *cli.Context) error {
-	// todo
-	fmt.Println("todo")
-	return nil
-}
-
-func calculateCIDR(c *cli.Context) error {
+func calcCIDR(c *cli.Context) error {
 	cidr := c.Args().Get(0)
 	if cidr == "" {
-		log.Fatal("need a cidr address")
+		log.Fatal("need a CIDR address")
 	}
 	// parse address for CIDR formate: x.x.x.x/y
 	s := strings.Split(cidr, "/")

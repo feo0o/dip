@@ -1,7 +1,7 @@
 APP_NAME		=	Dip
 MAJOR_VERSION	=	0
-MINOR_VERSION	=	1
-BUILD_VERSION	=	0
+MINOR_VERSION	=	0
+BUILD_VERSION	=	1
 GIT_COMMIT		=	$(shell git rev-parse --short HEAD)
 
 RELEASE_DIR		=	release
@@ -23,7 +23,7 @@ BUILD_RELEASE	=	go build -trimpath \
 					-ldflags '-extldflags "-static" $(IMPORT_VARS)'
 
 release:main.go
-	# $(ENV_WINDOWS_X64) $(BUILD_RELEASE) -o $(RELEASE_DIR)/$(ARTIFACT_NAME)_windows_amd64.exe main.go
+	$(ENV_WINDOWS_X64) $(BUILD_RELEASE) -o $(RELEASE_DIR)/$(ARTIFACT_NAME)_windows_amd64.exe main.go
 	$(ENV_LINUX_X64) $(BUILD_RELEASE) -o $(RELEASE_DIR)/$(ARTIFACT_NAME)_linux_amd64 main.go
 	# $(ENV_DARWIN_X64) $(BUILD_RELEASE) -o $(RELEASE_DIR)/$(ARTIFACT_NAME)_darwin_amd64 main.go
 
